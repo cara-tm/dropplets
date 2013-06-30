@@ -14,26 +14,26 @@
         </div>
 
         <div class="three-quarters post">
-            <?php
+        <?php
 
-            // require php-typography.php file
-            @include_once('dropplets/plugins/typography/php-typography.php');
+        // require php-typography.php file
+        @include_once('dropplets/plugins/typography/php-typography.php');
 
-    	    $typo = new phpTypography();
-			$typo->set_tags_to_ignore("pre");
-			$typo->set_min_length_hyphenation(7);
-			$typo->set_min_before_hyphenation(5);
-			$typo->set_min_after_hyphenation(3);
-			$typo->set_hyphenate_headings(FALSE); // method for headings
-			$typo->set_hyphenate_title_case(FALSE); // method for capitalized titles
-			$typo->set_hyphenate_all_caps(FALSE); // method for all capital letters into words
-			$typo->set_hyphenation_exceptions("king-desk"); // Personal Dictionary
-			$typo->set_hyphenation_language("fr-FR"); // Set language
-			$html = $typo->process($post);
+ 		$typo = new phpTypography();
+		$typo->set_tags_to_ignore("pre");
+		$typo->set_min_length_hyphenation(7);
+		$typo->set_min_before_hyphenation(5);
+		$typo->set_min_after_hyphenation(3);
+		$typo->set_hyphenate_headings(FALSE); // method for headings
+		$typo->set_hyphenate_title_case(FALSE); // method for capitalized titles
+		$typo->set_hyphenate_all_caps(FALSE); // method for all capital letters into words
+		$typo->set_hyphenation_exceptions("king-desk"); // Personal Dictionary
+		$typo->set_hyphenation_language("fr-FR"); // Set language
+		$html = $typo->process($post);
 
-		    echo $html;
+	echo $html;
             
-            ?>
+        ?>
             
             <?php if (file_exists($image)) : ?>
             <div style="margin-top:2em">
