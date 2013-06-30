@@ -180,11 +180,20 @@ if ($filename==NULL) {
                 $post_link = str_replace(FILE_EXT, '', $post['fname']);
             }
 
-            // Get the post image url.
-            $image = str_replace(array(FILE_EXT), '', POSTS_DIR.$post['fname']).'.jpg';
+            // Get the post image url if there is no other image seen into the md post file
+            if (empty($fcontents[6]))
+            	$image = str_replace(array(FILE_EXT), '', POSTS_DIR.$post['fname']).'.jpg';
+            // Read the sixth line into the post .mdb file which contains the image filename & extension (ie. first-post.gif)
+            else
+            	$pic = str_replace('- ', '', $fcontents[6]);
 
-            if (file_exists($image)) {
+            // Display the new image file
+            if (file_exists($pic)) {
+            	$post_image = $blog_url.'/'.POSTS_DIR.'/'.$pic;
+            // Or the default one (.jpg)
+            } elseif (file_exists($image)) {
                 $post_image = $blog_url.'/'.str_replace(array(FILE_EXT, '../'), '', POSTS_DIR.$post['fname']).'.jpg';
+            // Or the Twitter avatar
             } else {
                 $post_image = get_twitter_profile_img($post_author_twitter);
             }
@@ -403,10 +412,20 @@ else {
         // Get the post link.
         $post_link = $blog_url.'/'.str_replace(array(FILE_EXT, POSTS_DIR), '', $filename);
 
-        // Get the post image url.
-        $image = str_replace(array(FILE_EXT), '', $filename).'.jpg';
+        // The sixth line isn't empty, so prepare its content
+        if($fcontents[6] != '- ')
+        	$fcontents[6] = str_replace('- ', '', $fcontents[6]);
+        // if empty, get the post image url.
+        if (empty($fcontents[6]))
+        	$image = str_replace(array(FILE_EXT), '', $filename).'.jpg';
+        // Otherwise, get the pic file
+        else
+        	$pic = $fcontents[6];
 
-        if (file_exists($image)) {
+        // Display image
+        if (file_exists($pic)) {
+        	$post_image = $blog_url.'/'.POSTS_DIR.$pic;
+        } elseif (file_exists($image)) {
             $post_image = $blog_url.'/'.str_replace(array(FILE_EXT, '../'), '', $filename).'.jpg';
         } else {
             $post_image = get_twitter_profile_img($post_author_twitter);
