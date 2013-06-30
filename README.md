@@ -38,6 +38,7 @@ With Dropplets, you write your posts offline (using the text or Markdown editor 
     - Publish Date in YYYY/MM/DD Format (e.g. "2013/04/28")
     - Post Category (e.g. "Random Thoughts")
     - Post Status (e.g. "published" or "draft")
+    - Image filename with extension (e.g. "my-first-blog-post.png")
 
     Your post text starts here. 
     
