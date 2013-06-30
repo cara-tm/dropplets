@@ -28,7 +28,7 @@
 		$typo->set_hyphenate_title_case(FALSE); // method for capitalized titles
 		$typo->set_hyphenate_all_caps(FALSE); // method for all capital letters into words
 		$typo->set_hyphenation_exceptions("king-desk"); // Personal Dictionary
-		$typo->set_hyphenation_language("fr-FR"); // Set language
+		$typo->set_hyphenation_language("en-US"); // Set language
 		$html = $typo->process($post);
 
 	echo $html;
